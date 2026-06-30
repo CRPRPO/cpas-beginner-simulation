@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CPAS 初級培訓｜隱藏背景互動模擬</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">CPAS 初級培訓｜教師版</p>
+      <h1>隱藏背景互動模擬系統</h1>
+      <p class="subtitle">先不看 CPAS 分數，透過提問蒐集個案背景，再回頭用 CPAS 對照證據、收斂職涯問題與建議。</p>
+    </div>
+    <div class="timerBox">
+      <span>已提問</span>
+      <strong id="askedCount">0</strong>
+      <small>題</small>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="ask">① 提問蒐證</button>
+    <button class="tab" data-tab="board">② 資料格整理</button>
+    <button class="tab" data-tab="cpas">③ CPAS 對照</button>
+    <button class="tab" data-tab="report">④ 報告骨架</button>
+    <button id="resetBtn" class="ghost">重置練習</button>
+  </nav>
+
+  <main>
+    <section id="ask" class="panel active">
+      <div class="notice">
+        <strong>學員任務：</strong> 個案背景不會一次提供。請從下方題組選題，或輸入自訂提問。問得越具體，個案透露的資料越明確。
+      </div>
+
+      <div class="customAsk">
+        <label for="freeQuestion">自訂提問測試</label>
+        <div class="askRow">
+          <input id="freeQuestion" type="text" placeholder="例如：你目前讀什麼科系？家人對你有什麼期待？你有實習經驗嗎？" />
+          <button id="freeAskBtn">詢問個案</button>
+        </div>
+        <p class="hint">系統會用關鍵字對應最接近的題組；若太籠統，個案只會給模糊回答。</p>
+      </div>
+
+      <div id="questionGrid" class="questionGrid"></div>
+
+      <aside id="answerDrawer" class="drawer hidden">
+        <button id="closeDrawer" class="close">×</button>
+        <p class="eyebrow" id="drawerSource">個案回答</p>
+        <h2 id="drawerTitle"></h2>
+        <div id="drawerQuestion" class="questionLine"></div>
+        <div class="answerBox">
+          <h3>個案可透露的回答</h3>
+          <p id="drawerAnswer"></p>
+        </div>
+        <div class="saveBox">
+          <label for="evidenceText">要保留進報告素材的資料</label>
+          <textarea id="evidenceText" rows="7"></textarea>
+          <label for="boxSelect">放進哪一個資料格？</label>
+          <select id="boxSelect"></select>
+          <div class="actions">
+            <button id="saveEvidence">加入資料格</button>
+            <button id="showReveal" class="secondary">查看系統可透露資料</button>
+          </div>
+          <div id="revealBox" class="reveal hidden"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="board" class="panel">
+      <div class="panelHead">
+        <div>
+          <h2>資料格整理</h2>
+          <p>這裡模擬報告撰寫前的「素材分類」。學員需要判斷哪些資料能支持背景、現況、職涯問題與後續 CPAS 解讀。</p>
+        </div>
+        <button id="exportBoard" class="secondary">複製目前資料格</button>
+      </div>
+      <div id="evidenceBoard" class="evidenceBoard"></div>
+    </section>
+
+    <section id="cpas" class="panel">
+      <div class="panelHead">
+        <div>
+          <h2>CPAS 對照</h2>
+          <p>完成第一輪蒐證後，再揭示 CPAS。請回頭檢查：哪些晤談資料可以支持分數判讀？哪些還需要追問？</p>
+        </div>
+        <button id="unlockCpas">揭示 CPAS 對照資料</button>
+      </div>
+      <div id="cpasLocked" class="locked">
+        <h3>CPAS 暫時隱藏</h3>
+        <p>初級課程建議先讓學員練習「不看分數也能問出背景與現況」。按下揭示後，再進入 CPAS 證據對照。</p>
+      </div>
+      <div id="cpasContent" class="hidden">
+        <h3>五大適性工作與領導潛能</h3>
+        <div id="cpas5Grid" class="cpasGrid"></div>
+        <h3>十二項人格特質</h3>
+        <div id="cpas12Grid" class="cpasGrid"></div>
+      </div>
+    </section>
+
+    <section id="report" class="panel">
+      <div class="panelHead">
+        <div>
+          <h2>報告骨架產生器</h2>
+          <p>把前面整理的資料轉換成初級版 CPAS 報告架構。每一個職涯問題都要能回到晤談證據與 CPAS 指標。</p>
+        </div>
+        <button id="copyReport">複製報告骨架</button>
+      </div>
+      <div class="reportForm">
+        <label>一、個案背景</label>
+        <textarea id="reportBackground" rows="5"></textarea>
+        <label>二、現況說明</label>
+        <textarea id="reportStatus" rows="5"></textarea>
+        <label>三、職涯問題</label>
+        <textarea id="reportProblem" rows="5"></textarea>
+        <label>四、CPAS 關鍵指標與行為證據</label>
+        <textarea id="reportCpas" rows="6"></textarea>
+        <label>五、顧問建議方向</label>
+        <textarea id="reportAdvice" rows="6"></textarea>
+      </div>
+    </section>
+  </main>
+
+  <template id="questionCardTpl">
+    <article class="qCard">
+      <div class="qCardHead">
+        <span class="badge"></span>
+        <h3></h3>
+      </div>
+      <ul></ul>
+      <button class="askBtn">選這題詢問個案</button>
+    </article>
+  </template>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
