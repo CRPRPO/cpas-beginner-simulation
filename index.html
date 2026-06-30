@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CPAS 初級培訓｜隱藏背景互動模擬</title>
+  <title>CPAS 初級培訓｜隱藏背景互動模擬 v1.1.0</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="hero">
     <div>
-      <p class="eyebrow">CPAS 初級培訓｜教師版</p>
+      <p class="eyebrow">CPAS 初級培訓｜教師版｜版本 v1.1.0</p>
       <h1>隱藏背景互動模擬系統</h1>
       <p class="subtitle">先不看 CPAS 分數，透過提問蒐集個案背景，再回頭用 CPAS 對照證據、收斂職涯問題與建議。</p>
     </div>
@@ -103,7 +103,7 @@
       <div class="panelHead">
         <div>
           <h2>報告骨架產生器</h2>
-          <p>把前面整理的資料轉換成初級版 CPAS 報告架構。每一個職涯問題都要能回到晤談證據與 CPAS 指標。</p>
+          <p>把前面整理的資料轉換成正式 CPAS 報告七大欄位。CPAS 不合併成一欄，需分別完成 12項人格特質、五大適性工作、領導潛能與顧問建議。</p>
         </div>
         <button id="copyReport">複製報告骨架</button>
       </div>
@@ -114,10 +114,14 @@
         <textarea id="reportStatus" rows="5"></textarea>
         <label>三、職涯問題</label>
         <textarea id="reportProblem" rows="5"></textarea>
-        <label>四、CPAS 關鍵指標與行為證據</label>
-        <textarea id="reportCpas" rows="6"></textarea>
-        <label>五、顧問建議方向</label>
-        <textarea id="reportAdvice" rows="6"></textarea>
+        <label>四、12項人格特質說明</label>
+        <textarea id="reportTraits12" rows="7"></textarea>
+        <label>五、五大適性工作</label>
+        <textarea id="reportWork5" rows="7"></textarea>
+        <label>六、領導潛能</label>
+        <textarea id="reportLeadership" rows="5"></textarea>
+        <label>七、顧問建議</label>
+        <textarea id="reportAdvice" rows="7"></textarea>
       </div>
     </section>
   </main>

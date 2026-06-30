@@ -183,13 +183,21 @@ function buildReport(){
   $("reportBackground").value = linesFrom(["背景與限制","學業與科系","經驗素材"]);
   $("reportStatus").value = linesFrom(["現況與卡點","升學/實習/就業","職缺與能力缺口"]);
   $("reportProblem").value = linesFrom(["主訴與價值觀","職涯問題線索"]);
-  $("reportCpas").value = state.cpasUnlocked
-    ? "請從 CPAS 對照頁挑選 3 個關鍵指標，寫成：分數＋晤談證據＋工作行為影響。\n\n建議優先檢查：行動性3、持續性1、思考性8、慎重性9、對人工作0、營業工作0、非定型工作1。"
-    : "尚未揭示 CPAS。請先完成蒐證，再回到 CPAS 對照頁。";
-  $("reportAdvice").value = "請依一對一原則撰寫：\n1. 每一個職涯問題至少對應一個建議。\n2. 每一個建議都要能回到晤談資料與 CPAS 指標。\n3. 初級版可先寫：職缺分析、實習探索、數位工具補強、小型 side project、三週小行動。";
+
+  if(state.cpasUnlocked){
+    $("reportTraits12").value = "請依正式報告格式撰寫 12項人格特質說明。\n寫法：特質名稱＋分數＋晤談行為證據＋對職涯選擇或求職行動的影響。\n\n本案可優先整理：\n・行動性3分：想很多但啟動較慢，需小步驟任務。\n・持續性1分：長期目標容易太遠，需短期檢核。\n・思考性8分：適合職缺分析、資料整理、條件判斷。\n・慎重性9分：適合風險查核，但也可能延遲決策。\n・柔軟性3分、情緒安定性3分、獨立自主性7分可視蒐證資料補充。";
+    $("reportWork5").value = "請分別撰寫五大適性工作，不要只寫高低分。\n寫法：適性工作名稱＋分數＋工作型態意義＋晤談證據＋職務適配判斷。\n\n本案重點：\n・定型工作4分：可接受規則清楚、流程明確的支援型任務。\n・對人工作0分：不宜高頻率陌生互動或情緒勞動，但明確角色下仍可互動，如TA。\n・營業工作0分：不宜業績、推銷、陌生開發或高KPI成交壓力。\n・非定型工作1分：不宜高度變動、開放式問題解決，需先切小任務。\n・具創造性工作1分：不宜直接要求大型創意產出，可用side project逐步打開。";
+    $("reportLeadership").value = "領導潛能0分：請從自我掌控、主動承擔、帶動方向與團隊主責角度撰寫。\n本案可寫：目前不宜直接安排大型帶領、管理或主責任務，較適合先從明確分工、小任務、資料整理、進度確認等可掌控範圍開始建立責任感。";
+  }else{
+    $("reportTraits12").value = "尚未揭示 CPAS。請先完成蒐證，再回到 CPAS 對照頁；正式報告需撰寫「12項人格特質說明」，不是合併成CPAS關鍵指標。";
+    $("reportWork5").value = "尚未揭示 CPAS。正式報告需另列「五大適性工作」，並說明各分數對工作型態與職務適配的意義。";
+    $("reportLeadership").value = "尚未揭示 CPAS。正式報告需另列「領導潛能」，不可併入五大適性工作或人格特質。";
+  }
+
+  $("reportAdvice").value = "請依一對一原則撰寫顧問建議：\n1. 每一個職涯問題至少對應一個建議。\n2. 每一個建議都要能回到晤談資料與 CPAS 分數。\n3. 本案可先寫：暫緩把研究所當唯一答案、進行職缺分析、優先實習探索、補強數位工具、用小型 side project 產出證據、設定三週小行動。";
 }
 $("copyReport").addEventListener("click", async () => {
-  const txt = `一、個案背景\n${$("reportBackground").value}\n\n二、現況說明\n${$("reportStatus").value}\n\n三、職涯問題\n${$("reportProblem").value}\n\n四、CPAS 關鍵指標與行為證據\n${$("reportCpas").value}\n\n五、顧問建議方向\n${$("reportAdvice").value}`;
+  const txt = `一、個案背景\n${$("reportBackground").value}\n\n二、現況說明\n${$("reportStatus").value}\n\n三、職涯問題\n${$("reportProblem").value}\n\n四、12項人格特質說明\n${$("reportTraits12").value}\n\n五、五大適性工作\n${$("reportWork5").value}\n\n六、領導潛能\n${$("reportLeadership").value}\n\n七、顧問建議\n${$("reportAdvice").value}`;
   await navigator.clipboard.writeText(txt);
   alert("已複製報告骨架。");
 });
