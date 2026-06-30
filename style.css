@@ -80,7 +80,7 @@ button.secondary{background:var(--brand2);color:#273a93}
 .reportField textarea{margin-top:10px;min-height:140px}
 
 
-/* v1.3.1: icon-triggered collapsible help buttons */
+/* v1.3.4: icon-triggered collapsible help buttons */
 .tipDetails,.hintDetails{border-radius:14px;margin:12px 0;overflow:hidden}
 .tipDetails{background:#eff6ff;border:1px solid #bfdbfe}
 .hintDetails{background:#fff7ed;border:1px solid #fed7aa}

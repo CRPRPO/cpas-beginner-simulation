@@ -1,11 +1,3 @@
-CPAS Beginner Hidden Case Web
-Version: v1.3.1
-Date: 2026-06-30
-
-Main changes:
-- Changed report help sections to icon-triggered collapsible buttons.
-- ! button opens filling prompts.
-- ? button opens extra hint explanations.
-- Removed duplicated 12-trait concise text from the extra hint.
-- Removed detailed case-specific five-work-style examples from the extra hint.
-- Kept improvement suggestions as hints only; report improvement writing box now starts empty.
+CPAS 初級培訓互動網頁
+版本：v1.3.5
+更新重點：報告骨架一開始即顯示所有欄位與空白撰寫框；CPAS 內容揭示後才自動帶入；手動修改內容會保留。
