@@ -1,11 +1,11 @@
-CPAS 初級培訓｜隱藏背景互動模擬系統
-版本：v1.1.0
-日期：2026-06-30
+CPAS Beginner Hidden Case Web
+Version: v1.3.1
+Date: 2026-06-30
 
-本版修改：
-1. 最後一頁報告骨架改為正式七大欄位。
-2. 移除錯誤欄位「四、CPAS 關鍵指標與行為證據」。
-3. 第四欄改為「12項人格特質說明」。
-4. 第五欄為「五大適性工作」。
-5. 第六欄為「領導潛能」。
-6. 第七欄為「顧問建議」。
+Main changes:
+- Changed report help sections to icon-triggered collapsible buttons.
+- ! button opens filling prompts.
+- ? button opens extra hint explanations.
+- Removed duplicated 12-trait concise text from the extra hint.
+- Removed detailed case-specific five-work-style examples from the extra hint.
+- Kept improvement suggestions as hints only; report improvement writing box now starts empty.

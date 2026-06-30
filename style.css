@@ -59,3 +59,39 @@ button.secondary{background:var(--brand2);color:#273a93}
   main{padding:18px 14px 40px}.askRow,.actions,.panelHead{display:block}
   button{margin-top:8px}.drawer{right:12px;top:76px;width:calc(100vw - 24px)}
 }
+.buttonGroup{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pdfReport{width:190mm;background:#fff;color:#111827;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7;padding:8mm}
+.pdfReport h1{font-size:24px;margin:0 0 8px;color:#111827}
+.pdfReport .pdfMeta{font-size:12px;color:#6b7280;margin:0 0 16px}
+.pdfReport h2{font-size:17px;margin:18px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:5px;color:#172554}
+.pdfReport pre{white-space:pre-wrap;font-family:inherit;font-size:13px;margin:0;color:#111827}
+@media print{.tabs,.hero,.panelHead button,.buttonGroup{display:none!important}.panel{display:block!important}body{background:#fff}main{padding:0}.reportForm{box-shadow:none;border:0}.reportForm textarea{border:0;min-height:auto}}
+.reportField{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff;margin-bottom:18px}
+.reportField h3{margin:0 0 12px;font-size:20px;color:#172554}
+.sectionPrompt{margin:0 0 12px;line-height:1.75;color:#374151;background:#f8fafc;border-left:4px solid var(--brand);border-radius:10px;padding:12px 14px}
+.promptBox{background:#f9fafb;border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0;line-height:1.7}
+.promptBox p{margin:6px 0}.promptBox ul{margin:8px 0 0 20px;padding:0}.promptBox pre{white-space:pre-wrap;font-family:inherit;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0 0}
+.hintDetails{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;margin:12px 0;overflow:hidden}
+.hintDetails summary{cursor:pointer;font-weight:800;color:#9a3412;padding:12px 14px;list-style:none}
+.hintDetails summary::before{content:'＋';display:inline-block;margin-right:8px;font-weight:900}
+.hintDetails[open] summary::before{content:'－'}
+.hintDetails div{border-top:1px solid #fed7aa;padding:14px;line-height:1.75;color:#431407;white-space:normal}
+.hintDetails ul,.hintDetails ol{margin:8px 0 8px 22px;padding:0}.hintDetails p{margin:8px 0}.hintDetails h4{margin:12px 0 8px;color:#7c2d12}
+.reportField textarea{margin-top:10px;min-height:140px}
+
+
+/* v1.3.1: icon-triggered collapsible help buttons */
+.tipDetails,.hintDetails{border-radius:14px;margin:12px 0;overflow:hidden}
+.tipDetails{background:#eff6ff;border:1px solid #bfdbfe}
+.hintDetails{background:#fff7ed;border:1px solid #fed7aa}
+.tipDetails summary,.hintDetails summary{cursor:pointer;font-weight:800;padding:12px 14px;list-style:none;display:inline-flex;align-items:center;gap:8px;border-radius:999px;margin:8px 10px}
+.tipDetails summary{background:#dbeafe;color:#1d4ed8}
+.hintDetails summary{background:#ffedd5;color:#9a3412}
+.tipDetails summary::-webkit-details-marker,.hintDetails summary::-webkit-details-marker{display:none}
+.tipDetails summary::before,.hintDetails summary::before{content:none!important}
+.iconBadge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:#fff;font-weight:900;line-height:1}
+.tipDetails div,.hintDetails div{border-top:1px solid rgba(0,0,0,.08);padding:14px;line-height:1.75;white-space:normal}
+.tipDetails div{color:#172554}.hintDetails div{color:#431407}
+.tipDetails ul,.tipDetails ol,.hintDetails ul,.hintDetails ol{margin:8px 0 8px 22px;padding:0}
+.tipDetails p,.hintDetails p{margin:8px 0}
+.tipDetails pre,.hintDetails pre{white-space:pre-wrap;font-family:inherit;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0 0}

@@ -8,6 +8,37 @@ const state = JSON.parse(localStorage.getItem("cpasSimState") || JSON.stringify(
 function saveState(){ localStorage.setItem("cpasSimState", JSON.stringify(state)); }
 function $(id){ return document.getElementById(id); }
 
+const REPORT_TRAITS_12 = `行動性 3分：速度較慢，較容易先思考、觀望與評估，面對較大的目標時，容易會不知道從哪裡開始。
+
+持續性 1分：對長期任務的維持度較弱，偏好立竿見影的行動。
+
+指導性 2分：對自己較缺乏自信，不太敢表達出自己的想法。
+
+挑戰性 4分：有尋找方向的意願，但目標感尚未明確，較常先知道自己不想要什麼，而不一定能清楚說出想追求什麼。
+
+共感性 2分：對陌生互動、主動關懷或高情緒勞動情境較保留。
+
+情緒安定性 3分：情緒表達較直接寫在臉上，做事容易受到情緒影響。
+
+獨立自主性 7分：傾向依自己的想法與節奏行動，不一定想跟多數人走相同路徑。
+
+革新性 4分：有改變現況的想法，但面對實際改變時容易猶豫，會在想改變與擔心改變之間拉扯。
+
+思考性 8分：容易深入思考與分析不同的可能性，也會反覆比較、分析與推演。
+
+柔軟性 3分：面對不同建議或未知選項時，較容易先感到不確定，也可能卡在原本主觀的看法中。
+
+感受性 5分：對他人眼神、語氣與回饋容易在某些情境下因外界訊息過度解讀。
+
+慎重性 9分：做決定前會反覆確認與評估，擔心結果不如預期而事事斟酌。`;
+
+const REPORT_IMPROVEMENT = `請依「指標＋描述影響＋具體行為改善建議」撰寫。
+
+範例：
+1. 行動性3分、思考性8分、慎重性9分，O同學目前較容易先思考、觀望與評估，面對升學、實習或就業選擇時，容易因目標過大而不知道如何開始。若個案希望更清楚自己的職涯方向，建議透過實做來驗證，缺乏行動會使探索停留在想法中，難以累積實際判斷依據。
+
+2. 持續性1分，個案對長期任務的維持度較弱，偏好立竿見影的行動。目前較適合短期衝刺型的事務，建議可參加學校的微學分、演講等活動，來累積自己的經驗。在探索興趣的部分，每件事情至少要給自己1-3個月的時間累積足夠的經驗。`;
+
 function switchTab(name){
   document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === name));
@@ -185,21 +216,91 @@ function buildReport(){
   $("reportProblem").value = linesFrom(["主訴與價值觀","職涯問題線索"]);
 
   if(state.cpasUnlocked){
-    $("reportTraits12").value = "請依正式報告格式撰寫 12項人格特質說明。\n寫法：特質名稱＋分數＋晤談行為證據＋對職涯選擇或求職行動的影響。\n\n本案可優先整理：\n・行動性3分：想很多但啟動較慢，需小步驟任務。\n・持續性1分：長期目標容易太遠，需短期檢核。\n・思考性8分：適合職缺分析、資料整理、條件判斷。\n・慎重性9分：適合風險查核，但也可能延遲決策。\n・柔軟性3分、情緒安定性3分、獨立自主性7分可視蒐證資料補充。";
-    $("reportWork5").value = "請分別撰寫五大適性工作，不要只寫高低分。\n寫法：適性工作名稱＋分數＋工作型態意義＋晤談證據＋職務適配判斷。\n\n本案重點：\n・定型工作4分：可接受規則清楚、流程明確的支援型任務。\n・對人工作0分：不宜高頻率陌生互動或情緒勞動，但明確角色下仍可互動，如TA。\n・營業工作0分：不宜業績、推銷、陌生開發或高KPI成交壓力。\n・非定型工作1分：不宜高度變動、開放式問題解決，需先切小任務。\n・具創造性工作1分：不宜直接要求大型創意產出，可用side project逐步打開。";
-    $("reportLeadership").value = "領導潛能0分：請從自我掌控、主動承擔、帶動方向與團隊主責角度撰寫。\n本案可寫：目前不宜直接安排大型帶領、管理或主責任務，較適合先從明確分工、小任務、資料整理、進度確認等可掌控範圍開始建立責任感。";
+    $("reportTraits12").value = REPORT_TRAITS_12;
+    $("reportWork5").value = `定型工作 4分：可接受一定程度的規則、流程與明確任務，但不一定能從高度重複工作中獲得強烈成就感。
+目前可考慮行政管理助理、營運助理、資料整理助理、財務資料整理助理等流程清楚的支援型職務。
+
+對人工作 0分：對於服務他人與高頻率陌生互動、高服務壓力或高情緒勞動等工作較抗拒。
+不建議優先安排門市銷售、客服、活動接待、業務助理中高度對外互動的職務。
+可考慮內部支援、資料處理、行政協助、低陌生互動的助理角色。
+
+營業工作 0分：抗拒面對高業績壓力、陌生開發、推銷、招商或需要大量說服他人的工作。
+若接觸行銷，宜先從資料分析、行銷後台、內容整理或企劃助理的支援角色開始。
+
+非定型工作 1分：面對高度變動、問題解決、資源整合或沒有標準答案的任務時，容易感到壓力。
+可先從任務明確、小型交付物、有人帶領的專案助理或營運助理開始。
+
+具創造性工作 1分：較不容易跳脫框架思考或大量創新輸出的事務。
+若要探索創意或數位相關方向，可先從模仿、整理、改良、輔助型任務開始，例如簡報整理、資料視覺化、side project、小型數位工具作品。`;
+    $("reportLeadership").value = `領導潛能 0分：個案目前求學狀況較為迷失方向，面對責任容易選擇逃避。請從自我掌控、責任承擔、主動設定方向與推動任務的狀態撰寫，不建議從能不能當主管的角度分析。`;
   }else{
-    $("reportTraits12").value = "尚未揭示 CPAS。請先完成蒐證，再回到 CPAS 對照頁；正式報告需撰寫「12項人格特質說明」，不是合併成CPAS關鍵指標。";
-    $("reportWork5").value = "尚未揭示 CPAS。正式報告需另列「五大適性工作」，並說明各分數對工作型態與職務適配的意義。";
-    $("reportLeadership").value = "尚未揭示 CPAS。正式報告需另列「領導潛能」，不可併入五大適性工作或人格特質。";
+    $("reportTraits12").value = "尚未揭示 CPAS。請先完成蒐證，再回到 CPAS 對照頁；正式報告需撰寫「12項人格特質說明」，內容只放行為偏好描述，不放改善建議。";
+    $("reportWork5").value = "尚未揭示 CPAS。正式報告需另列「五大適性工作判斷」，並說明各分數對工作型態與職務適配的意義。";
+    $("reportLeadership").value = "尚未揭示 CPAS。正式報告需另列「領導潛能」，並從自我掌控、責任承擔、主動設定方向與推動任務的狀態分析。";
   }
 
-  $("reportAdvice").value = "請依一對一原則撰寫顧問建議：\n1. 每一個職涯問題至少對應一個建議。\n2. 每一個建議都要能回到晤談資料與 CPAS 分數。\n3. 本案可先寫：暫緩把研究所當唯一答案、進行職缺分析、優先實習探索、補強數位工具、用小型 side project 產出證據、設定三週小行動。";
+  $("reportAdvice").value = `請依一對一原則撰寫顧問建議：
+1. 每一個職涯問題至少對應一個建議。
+2. 每一個建議都要能回到晤談資料與 CPAS 分數。
+
+可參考的寫法：
+・O同學目前迷惘主因並非科系沒有用，而是缺乏實習、專案與正式職場經驗，因此建議先透過低風險實習或職缺分析蒐集實際判斷資料。
+・O同學行動性3分、持續性1分，若直接設定長期目標容易停留在想法中，因此建議將目標切成具體階段性的小任務，像是每週完成一個具體產出。
+・O同學思考性8分、慎重性9分，可將其擔憂與焦慮轉化成分析與查核的能力，透過查找資料的過程，降低自己對未知的焦慮感。也建議培養風險管理的專業職能，提升自己的求職競爭力。
+・O同學對人工作0分、營業工作0分，暫時不建議一開始就找高陌生互動或高業績壓力等職務，可先探索行政管理、營運支援、資料整理、經營分析、人資助理、財務資料整理等支援型與分析型角色。`;
+  $("reportImprovement").value = "";
 }
+function collectReportText(){
+  return `一、個案背景\n${$("reportBackground").value}\n\n二、現況說明\n${$("reportStatus").value}\n\n三、職涯問題\n${$("reportProblem").value}\n\n四、12項人格特質說明\n${$("reportTraits12").value}\n\n五、五大適性工作\n${$("reportWork5").value}\n\n六、領導潛能\n${$("reportLeadership").value}\n\n七、顧問建議\n${$("reportAdvice").value}\n\n七、顧問建議---對個案成為更好的具體改善建議\n${$("reportImprovement").value}`;
+}
+
 $("copyReport").addEventListener("click", async () => {
-  const txt = `一、個案背景\n${$("reportBackground").value}\n\n二、現況說明\n${$("reportStatus").value}\n\n三、職涯問題\n${$("reportProblem").value}\n\n四、12項人格特質說明\n${$("reportTraits12").value}\n\n五、五大適性工作\n${$("reportWork5").value}\n\n六、領導潛能\n${$("reportLeadership").value}\n\n七、顧問建議\n${$("reportAdvice").value}`;
+  const txt = collectReportText();
   await navigator.clipboard.writeText(txt);
   alert("已複製報告骨架。");
+});
+
+function reportHtml(){
+  const sections = [
+    ["一、個案背景", $("reportBackground").value],
+    ["二、現況說明", $("reportStatus").value],
+    ["三、職涯問題", $("reportProblem").value],
+    ["四、12項人格特質說明", $("reportTraits12").value],
+    ["五、五大適性工作", $("reportWork5").value],
+    ["六、領導潛能", $("reportLeadership").value],
+    ["七、顧問建議", $("reportAdvice").value],
+    ["七、顧問建議---對個案成為更好的具體改善建議", $("reportImprovement").value]
+  ];
+  return `<div class="pdfReport"><h1>CPAS職涯輔導報告練習稿</h1><p class="pdfMeta">版本 v1.3.1｜初級培訓隱藏背景互動模擬</p>${sections.map(([title, body]) => `<section><h2>${escapeHtml(title)}</h2><pre>${escapeHtml(body || "（尚未填寫）")}</pre></section>`).join("")}</div>`;
+}
+
+$("downloadPdf").addEventListener("click", async () => {
+  buildReport();
+  if(window.html2pdf){
+    const wrap = document.createElement("div");
+    wrap.innerHTML = reportHtml();
+    wrap.style.position = "fixed";
+    wrap.style.left = "-10000px";
+    wrap.style.top = "0";
+    document.body.appendChild(wrap);
+    const opt = {
+      margin: [10, 10, 10, 10],
+      filename: "CPAS職涯輔導報告練習稿_v1.3.1.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["css", "legacy"] }
+    };
+    try{
+      await html2pdf().set(opt).from(wrap.querySelector(".pdfReport")).save();
+    }finally{
+      document.body.removeChild(wrap);
+    }
+  }else{
+    const w = window.open("", "_blank");
+    w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>CPAS職涯輔導報告練習稿</title><style>body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7;padding:28px}h1{font-size:24px}h2{font-size:18px;margin-top:24px;border-bottom:1px solid #ddd;padding-bottom:6px}pre{white-space:pre-wrap;font-family:inherit}</style></head><body>${reportHtml()}<script>window.print()<\/script></body></html>`);
+    w.document.close();
+  }
 });
 
 renderQuestions();

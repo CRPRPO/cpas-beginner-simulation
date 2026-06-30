@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CPAS 初級培訓｜隱藏背景互動模擬 v1.1.0</title>
+  <title>CPAS 初級培訓｜隱藏背景互動模擬 v1.3.1</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="hero">
     <div>
-      <p class="eyebrow">CPAS 初級培訓｜教師版｜版本 v1.1.0</p>
+      <p class="eyebrow">CPAS 初級培訓｜教師版｜版本 v1.3.1</p>
       <h1>隱藏背景互動模擬系統</h1>
       <p class="subtitle">先不看 CPAS 分數，透過提問蒐集個案背景，再回頭用 CPAS 對照證據、收斂職涯問題與建議。</p>
     </div>
@@ -105,23 +105,76 @@
           <h2>報告骨架產生器</h2>
           <p>把前面整理的資料轉換成正式 CPAS 報告七大欄位。CPAS 不合併成一欄，需分別完成 12項人格特質、五大適性工作、領導潛能與顧問建議。</p>
         </div>
-        <button id="copyReport">複製報告骨架</button>
+        <div class="buttonGroup"><button id="copyReport">複製報告骨架</button><button id="downloadPdf" class="secondary">下載PDF檔</button></div>
       </div>
       <div class="reportForm">
-        <label>一、個案背景</label>
-        <textarea id="reportBackground" rows="5"></textarea>
-        <label>二、現況說明</label>
-        <textarea id="reportStatus" rows="5"></textarea>
-        <label>三、職涯問題</label>
-        <textarea id="reportProblem" rows="5"></textarea>
-        <label>四、12項人格特質說明</label>
-        <textarea id="reportTraits12" rows="7"></textarea>
-        <label>五、五大適性工作</label>
-        <textarea id="reportWork5" rows="7"></textarea>
-        <label>六、領導潛能</label>
-        <textarea id="reportLeadership" rows="5"></textarea>
-        <label>七、顧問建議</label>
-        <textarea id="reportAdvice" rows="7"></textarea>
+        <article class="reportField">
+          <h3>一、個案背景</h3>
+          <details class="tipDetails"><summary><span class="iconBadge">!</span> 填寫提示</summary><div><p>請盡量蒐集並整理下列資料：</p><ul><li>性別</li><li>年齡</li><li>學歷／科系</li><li>畢業或肄業狀態</li><li>公司名稱／學校名稱</li><li>職稱／學生幾年級</li><li>目前在職、待業或在學狀態</li></ul></div></details>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>請整理個案的基本背景資料。這一區是先交代個案是誰、目前處於什麼身分狀態，以及哪些基本條件會影響後續職涯判斷。這一區要寫的是「會影響職涯判斷的背景資料」。</p><p>以本案來說，可以優先整理：</p><ul><li>個案是大學生，仍處於在學階段。</li><li>就讀管理相關科系／國企系脈絡。</li></ul></div></details>
+          <textarea id="reportBackground" rows="5"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>二、現況說明</h3>
+          <p class="sectionPrompt">請整理個案目前的職涯狀態、困擾來源、可用資源與限制條件。這一區的重點不是描述個案說了什麼，而是說明「個案目前為什麼卡住」。</p>
+          <details class="tipDetails"><summary><span class="iconBadge">!</span> 填寫提示</summary><div><p>請思考並整理下列問題：</p><ul><li>個案過去經驗與本次職涯問題有什麼關聯？</li><li>個案目前具備哪些能力基礎？</li><li>個案興趣所在是什麼？</li><li>個案價值觀想要什麼？不要什麼？</li><li>個案是否在意家庭或重要他人的期待？</li><li>個案目前的求職狀態與實際求職行為如何？</li><li>個案是否有待業時間、經濟壓力、家庭壓力或其他限制？</li><li>個案目前卡住的主要原因是什麼？</li><li>後續服務需要優先處理什麼？</li></ul></div></details>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>現況說明不是把問到的資料全部放進來，而是要整理出「影響職涯選擇的關鍵因素」。</p><p>以本案來說，現況可從這幾個方向整理：</p><ul><li>個案不知道自己的興趣，也不確定畢業後要考研究所、實習或直接就業。</li><li>個案學業表現不差，但尚未理解科系所學如何轉化為職務選擇。</li><li>個案有 TA、滑板興趣與課業學習經驗，但缺乏正式工作、實習、專案或競賽等實作驗證。</li><li>個案容易停留在思考與評估，實際行動較少。</li><li>家庭期待與地理位置可能影響升學、實習或就業選擇。</li><li>後續服務應優先協助個案把模糊迷惘轉化為可驗證的小行動。</li></ul></div></details>
+          <textarea id="reportStatus" rows="5"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>三、收斂後職涯問題</h3>
+          <p class="sectionPrompt">請將個案原本模糊的困擾，整理成可以被顧問建議具體回應的職涯問題。不要直接照抄個案說的「我不知道要做什麼」，而是要透過提問後收斂問題核心。</p>
+          <details class="tipDetails"><summary><span class="iconBadge">!</span> 填寫提示</summary><div><p>請至少整理 1 到 3 個收斂後職涯問題。</p></div></details>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>不適合直接寫成職涯問題的句子：</p><ul><li>O同學不知道自己要做什麼。</li><li>O同學不知道自己的興趣。</li><li>O同學不知道要不要考研究所。</li><li>O同學很迷惘，想知道自己的適才適所。</li></ul><p>這些都是個案原始困擾，不是收斂後職涯問題。</p><p>較好的寫法是：</p><ul><li>O同學在缺乏實習、專案與正式工作經驗的情況下，如何透過低風險探索釐清升學、實習與就業方向？</li><li>O同學雖具備管理科系學習基礎，但尚未能將課程、TA經驗與興趣轉化為職務選擇，後續應如何建立職涯探索依據？</li><li>O同學在家庭地理期待、行動速度較慢與長期持續度較弱的情況下，如何設計短期可執行的職涯行動計畫？</li></ul></div></details>
+          <textarea id="reportProblem" rows="5"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>四、12項人格特質說明</h3>
+          <p class="sectionPrompt">請依正式報告格式，整理個案 12 項人格特質。這一區只寫行為偏好描述，不寫建議。建議與改善策略請放到後面的「顧問建議」區。</p>
+          <details class="tipDetails"><summary><span class="iconBadge">!</span> 填寫提示</summary><div><p>請使用下列格式：特質名稱＋分數＋行為偏好描述</p></div></details>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>這一區不要寫：</p><ul><li>建議個案應該……</li><li>後續可以安排……</li><li>適合從事……</li><li>應改善……</li></ul><p>這些內容應放到「七、顧問建議」或「七、顧問建議---對個案成為更好的具體改善建議」。</p></div></details>
+          <textarea id="reportTraits12" rows="7"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>五、五大適性工作判斷</h3>
+          <p class="sectionPrompt">請依據 CPAS 五大適性工作分數，說明個案目前偏好怎樣的工作型態（做事型態）。這一區要列出五大適性工作的分數，該項做事意願的狀態說明，以及相對應的職務名稱（務必考量科系、能力、興趣等）。</p>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>這一區一定要連結「職務」，不要只寫意願特質。</p></div></details>
+          <textarea id="reportWork5" rows="7"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>六、領導潛能</h3>
+          <p class="sectionPrompt">請說明個案目前對自己的負責任狀態、領導力展現程度，對於非在職場的個案，不建議從能不能當主管的角度給予建議與分析，而是從自我掌控、責任承擔、主動設定方向與推動任務的狀態。</p>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>以本案來說：</p><p><strong>領導潛能 0分</strong> 表示個案目前求學狀況較為迷失方向，面對責任容易選擇逃避。</p></div></details>
+          <textarea id="reportLeadership" rows="5"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>七、顧問建議</h3>
+          <p class="sectionPrompt">請根據前面收斂出的職涯問題，提出具體建議。顧問建議必須逐一回應職涯問題，不能只寫一般性鼓勵或泛泛求職建議。</p>
+          <details class="tipDetails"><summary><span class="iconBadge">!</span> 填寫提示</summary><div><p>可使用下列結構：</p><pre>職涯問題 Q1：＿＿＿＿
+對應建議：＿＿＿＿
+
+職涯問題 Q2：＿＿＿＿
+對應建議：＿＿＿＿
+
+職涯問題 Q3：＿＿＿＿
+對應建議：＿＿＿＿</pre></div></details>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>顧問建議要符合三個條件：</p><ul><li>回應職涯問題</li><li>連結個案背景與現況</li><li>連結 CPAS 分數與行為證據</li></ul><p>不適合的建議：</p><ul><li>多看看職缺。</li><li>可以去實習看看。</li><li>多培養自信。</li><li>你可以考研究所。</li><li>你可以做行政助理。</li></ul><p>這些建議如果沒有說明「為什麼」，就只是一般建議。</p><p>可參考的寫法：</p><ul><li>O同學目前迷惘主因並非科系沒有用，而是缺乏實習、專案與正式職場經驗，因此建議先透過低風險實習或職缺分析蒐集實際判斷資料。</li><li>O同學行動性3分、持續性1分，若直接設定長期目標容易停留在想法中，因此建議將目標切成具體階段性的小任務，像是每週完成一個具體產出。</li><li>O同學思考性8分、慎重性9分，可將其擔憂與焦慮轉化成分析與查核的能力，透過查找資料的過程，降低自己對未知的焦慮感。也建議培養風險管理的專業職能，提升自己的求職競爭力。</li><li>O同學對人工作0分、營業工作0分，暫時不建議一開始就找高陌生互動或高業績壓力等職務，可先探索行政管理、營運支援、資料整理、經營分析、人資助理、財務資料整理等支援型與分析型角色。</li></ul></div></details>
+          <textarea id="reportAdvice" rows="7"></textarea>
+        </article>
+
+        <article class="reportField">
+          <h3>七、顧問建議---對個案成為更好的具體改善建議</h3>
+          <p class="sectionPrompt">請針對個案若想成為更好的自己、提高職涯探索與求職成功率，提出具體可執行的性格調整建議。這一區不是重新描述人格特質，而是說明該特質會如何影響個案達成目標，以及可以怎麼改善。</p>
+          <details class="tipDetails"><summary><span class="iconBadge">!</span> 填寫提示</summary><div><p>建議使用的句型：</p><pre>【指標＋分數】＋【行為描述】＋【對達成目標的影響】＋【具體行為改善建議】</pre></div></details>
+          <details class="hintDetails"><summary><span class="iconBadge">?</span> 額外提示說明</summary><div><p>這一區的重點不是叫個案「改個性」，而是協助個案看見：</p><ul><li>哪一個 CPAS 指標正在影響他的目標？</li><li>這個影響表現在什麼具體行為？</li><li>如果他想達成目標，需要先改變哪一個小行為？</li><li>改善方式是否具體、可執行、可檢核？</li></ul><p>範例：</p><ol><li>行動性3分、思考性8分、慎重性9分，O同學目前較容易先思考、觀望與評估，面對升學、實習或就業選擇時，容易因目標過大而不知道如何開始。若個案希望更清楚自己的職涯方向，建議透過實做來驗證，缺乏行動會使探索停留在想法中，難以累積實際判斷依據。</li><li>持續性1分，個案對長期任務的維持度較弱，偏好立竿見影的行動。目前較適合短期衝刺型的事務，建議可參加學校的微學分、演講等活動，來累積自己的經驗。在探索興趣的部分，每件事情至少要給自己1-3個月的時間累積足夠的經驗。</li></ol></div></details>
+          <textarea id="reportImprovement" rows="9"></textarea>
+        </article>
       </div>
     </section>
   </main>
@@ -137,6 +190,7 @@
     </article>
   </template>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
