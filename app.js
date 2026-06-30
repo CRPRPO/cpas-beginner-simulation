@@ -1,5 +1,5 @@
 const DATA = window.CPAS_SIM_DATA;
-const STORAGE_KEY = "cpasSimState_v1_3_5";
+const STORAGE_KEY = "cpasSimState_v1_3_6";
 const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || JSON.stringify({
   asked: 0,
   cpasUnlocked: false,
@@ -221,7 +221,8 @@ function renderReportGate(){
   const content = $("reportContent");
   const actions = $("reportActions");
   if(!content) return;
-  // v1.3.5：報告骨架一開始就顯示所有欄位；CPAS 相關內容在揭示後才自動帶入。
+  // v1.3.6：報告骨架一開始就顯示所有欄位與空白撰寫框。
+  // CPAS 未揭示前，只是不自動帶入 CPAS 欄位內容；欄位本身永遠可見。
   if(locked) locked.classList.add("hidden");
   content.classList.remove("hidden");
   if(actions) actions.classList.remove("hidden");
@@ -312,7 +313,7 @@ function reportHtml(){
     ["七、顧問建議", $("reportAdvice").value],
     ["七、顧問建議---對O同學成為更好的具體改善建議", $("reportImprovement").value]
   ];
-  return `<div class="pdfReport"><h1>CPAS職涯輔導報告練習稿</h1><p class="pdfMeta">版本 v1.3.5｜初級培訓隱藏背景互動模擬</p>${sections.map(([title, body]) => `<section><h2>${escapeHtml(title)}</h2><pre>${escapeHtml(body || "（尚未填寫）")}</pre></section>`).join("")}</div>`;
+  return `<div class="pdfReport"><h1>CPAS職涯輔導報告練習稿</h1><p class="pdfMeta">版本 v1.3.6｜初級培訓隱藏背景互動模擬</p>${sections.map(([title, body]) => `<section><h2>${escapeHtml(title)}</h2><pre>${escapeHtml(body || "（尚未填寫）")}</pre></section>`).join("")}</div>`;
 }
 
 $("downloadPdf").addEventListener("click", async () => {
@@ -326,7 +327,7 @@ $("downloadPdf").addEventListener("click", async () => {
     document.body.appendChild(wrap);
     const opt = {
       margin: [10, 10, 10, 10],
-      filename: "CPAS職涯輔導報告練習稿_v1.3.5.pdf",
+      filename: "CPAS職涯輔導報告練習稿_v1.3.6.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
